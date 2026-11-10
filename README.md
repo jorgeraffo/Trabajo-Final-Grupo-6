@@ -9,8 +9,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 <style>
 :root{
+  /* Chatbot n8n con los colores de CASSIL */
+  --chat--color-primary:#9b4a9e;
+  --chat--color-primary-shade-50:#8a3f8d;
+  --chat--color-primary-shade-100:#793580;
+  --chat--color-secondary:#00a3e8;
+  --chat--color-secondary-shade-50:#0090cf;
+  --chat--header--background:#272727;
+  --chat--header--color:#ffffff;
+  --chat--toggle--background:#9b4a9e;
+  --chat--toggle--hover--background:#8a3f8d;
+  --chat--toggle--active--background:#793580;
+  --chat--toggle--color:#ffffff;
+  --chat--window--z-index:70;
+  --chat--toggle--z-index:70;
   --purple:#9b4a9e;
   --sky:#00a3e8;
   --yellow:#fff200;
@@ -167,7 +182,7 @@ footer{background:var(--ink);color:#c9cfd8;padding:34px 0;text-align:center;font
 footer b{font-family:var(--display);font-weight:400;font-size:1.3rem;color:#fff;letter-spacing:.04em}
 
 /* Floating WhatsApp */
-.fab{position:fixed;right:20px;bottom:20px;z-index:60;width:62px;height:62px;border-radius:50%;background:#1fa855;display:grid;place-items:center;
+.fab{position:fixed;left:20px;bottom:20px;z-index:60;width:62px;height:62px;border-radius:50%;background:#1fa855;display:grid;place-items:center;
   box-shadow:0 8px 22px rgba(0,0,0,.3);text-decoration:none;transition:transform .2s}
 .fab:hover{transform:scale(1.1)}
 .fab svg{width:34px;height:34px;fill:#fff}
@@ -509,6 +524,32 @@ footer b{font-family:var(--display);font-weight:400;font-size:1.3rem;color:#fff;
     }).then(function(){send.disabled=false;});
   });
 })();
+</script>
+
+<!-- Chatbot n8n -->
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://jraffo.app.n8n.cloud/webhook/8f419458-97b0-4f83-9c4a-961d4be0bb01/chat',
+    mode: 'window',
+    loadPreviousSession: false,
+    showWelcomeScreen: false,
+    defaultLanguage: 'en',
+    initialMessages: [
+      '¡Hola! Bienvenido.',
+      '¿Buscas alquilar, comprar o vender un inmueble? Cuéntame y te ayudo.'
+    ],
+    i18n: {
+      en: {
+        title: 'Asesor inmobiliario',
+        subtitle: 'Alquiler, compra y venta de inmuebles',
+        footer: '',
+        getStarted: 'Nueva conversación',
+        inputPlaceholder: 'Escribe tu consulta...'
+      }
+    }
+  });
 </script>
 </body>
 </html>
